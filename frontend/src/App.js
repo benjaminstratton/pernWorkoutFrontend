@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import {
   BrowserRouter as Router,
@@ -18,6 +18,23 @@ const App = () => {
     setIsAuthenticated(boolean);
   };
 
+  const isAuth = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/auth/verify", {
+        method: "GET",
+        headers: { token: localStorage.token },
+      });
+      const parseRes = await response.json();
+      parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  useEffect(() => {
+    isAuth();
+  }, []);
+
   return (
     <>
       <Router>
@@ -27,21 +44,33 @@ const App = () => {
               exact
               path="/login"
               element={
-                !isAuthenticated ? <Login setAuth={setAuth} /> : <Navigate to="/dashboard" />
+                !isAuthenticated ? (
+                  <Login setAuth={setAuth} />
+                ) : (
+                  <Navigate to="/dashboard" />
+                )
               }
             />
             <Route
               exact
               path="/signup"
               element={
-                !isAuthenticated ? <Signup setAuth={setAuth} /> : <Navigate to="/dashboard" />
+                !isAuthenticated ? (
+                  <Signup setAuth={setAuth} />
+                ) : (
+                  <Navigate to="/dashboard" />
+                )
               }
             />
             <Route
               exact
               path="/dashboard"
               element={
-                isAuthenticated ? <Dashboard setAuth={setAuth} /> : <Navigate to="/login" />
+                isAuthenticated ? (
+                  <Dashboard setAuth={setAuth} />
+                ) : (
+                  <Navigate to="/login" />
+                )
               }
             />
           </Routes>
