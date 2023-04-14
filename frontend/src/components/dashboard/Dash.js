@@ -3,7 +3,6 @@ import { ToastContainer, toast } from 'react-toastify';
 
 // Components
 
-
 const Dashboard = ({setAuth}) => {
 
   const [name, setName] = useState("");
@@ -43,7 +42,6 @@ const Dashboard = ({setAuth}) => {
       <h1>Dashboard</h1>
       <h2>{name}</h2>
       <button className="btn btn-primary" onClick={e => logout(e)}>Logout</button>
-      
       <ToastContainer
         position="top-right"
         autoClose={2000}
