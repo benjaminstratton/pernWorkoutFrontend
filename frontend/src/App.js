@@ -9,7 +9,7 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // Components
-import Dashboard from "./components/Dash";
+import Dashboard from "./components/dashboard/Dash";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 
