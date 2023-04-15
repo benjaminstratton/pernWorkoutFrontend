@@ -1,22 +1,28 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import AuthNav from "./AuthNav";
 import "./Auth.css";
+import AuthNav from "./AuthNav";
+import LandingBackground from "../../Assets/Landing-background.png";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const Login = ({ setAuth }) => {
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
   });
-
   const { email, password } = inputs;
 
   const onChange = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
 
-  const onSubmitForm = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const body = { email, password };
@@ -29,9 +35,9 @@ const Login = ({ setAuth }) => {
       if (parseRes.token) {
         localStorage.setItem("token", parseRes.token);
         setAuth(true);
-        toast.success("Logged in successfully!")
+        toast.success("Logged in successfully!");
       } else {
-        setAuth(false)
+        setAuth(false);
         toast.error(parseRes);
       }
     } catch (err) {
@@ -42,27 +48,65 @@ const Login = ({ setAuth }) => {
   return (
     <div className="Auth">
       <AuthNav />
-      <h1 className="text-center my-5">Login</h1>
-      <form onSubmit={onSubmitForm}>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          className="form-control my-3"
-          value={email}
-          onChange={(e) => onChange(e)}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          className="form-control my-3"
-          value={password}
-          onChange={(e) => onChange(e)}
-        />
-        <button className="btn btn-success">Submit</button>
-      </form>
-      <Link to="/signup">Signup</Link>
+      <div className="auth-container">
+        <div className="auth-bannerImage-container">
+          <img src={LandingBackground} alt="" />
+        </div>
+        <div className="auth-form-section">
+          <Box
+            sx={{
+              marginTop: 8,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Avatar sx={{ m: 1, bgcolor: "orange", width: '3.5rem', height: '3.5rem' }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <h2>Log In</h2>
+            <Box
+              component="form"
+              onSubmit={handleSubmit}
+              noValidate
+              sx={{ mt: 1 }}
+            >
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="email"
+                label="Email Address"
+                type="email"
+                value={email}
+                autoComplete="email"
+                autoFocus
+                onChange={(e) => onChange(e)}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                value={password}
+                autoComplete="current-password"
+                onChange={(e) => onChange(e)}
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Log In
+              </Button>
+            </Box>
+            <Link to="/signup">Don't have an account? Sign Up</Link>
+          </Box>
+        </div>
+      </div>
       <ToastContainer
         position="top-right"
         autoClose={2000}
