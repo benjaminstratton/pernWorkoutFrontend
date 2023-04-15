@@ -8,8 +8,8 @@ import {
   ListItem,
   ListItemButton,
   ListItemIcon,
-  ListItemText,
 } from "@mui/material";
+import LoginIcon from "@mui/icons-material/Login";
 import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
@@ -19,8 +19,14 @@ const LandingNav = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const menuOptions = [
     {
+      text: "Log In",
+      icon: <LoginIcon />,
+      href: "/login",
+    },
+    {
       text: "Home",
       icon: <HomeIcon />,
+      href: "/",
     },
     {
       text: "About",
@@ -39,10 +45,10 @@ const LandingNav = () => {
       </div>
       <div className="landing-navbar-links-container">
         <Link to="/">Home</Link>
-        <Link href="">About</Link>
-        <Link href="">Contact</Link>
+        <Link to="">About</Link>
+        <Link to="">Contact</Link>
         <Link to="/login">
-            <button className="landing-login-button">Log In</button>
+          <button className="landing-login-button">Log In</button>
         </Link>
       </div>
       <div className="landing-navbar-menu-container">
@@ -55,12 +61,12 @@ const LandingNav = () => {
           onClick={() => setOpenMenu(false)}
           onKeyDown={() => setOpenMenu(false)}
         >
-          <List>
+          <List className="landing-navbar-menu-items">
             {menuOptions.map((item) => (
               <ListItem key={item.text} disablePadding>
                 <ListItemButton>
                   <ListItemIcon>{item.icon}</ListItemIcon>
-                  <ListItemText primary={item.text} />
+                  <Link to={item.href}>{item.text}</Link>
                 </ListItemButton>
               </ListItem>
             ))}

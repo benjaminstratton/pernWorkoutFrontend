@@ -20,12 +20,20 @@ nav {
 .landing-navbar-menu-container {
     display: none;
 }
+.landing-navbar-menu-items a {
+    text-decoration: none;
+    color: black;
+}
 .landing-navbar-links-container a {
     margin-right: 3rem;
     text-decoration: none;
     color: black;
     font-size: 1.1rem;
     font-weight: 600;
+    transition: 0.2s;
+}
+.landing-navbar-links-container a:hover {
+    color: #6a6a6a;
 }
 .landing-login-button {
     padding: 0.9rem 1.75rem;

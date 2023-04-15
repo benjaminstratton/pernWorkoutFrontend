@@ -1,6 +1,17 @@
 import React, { useState } from "react";
+import "./Auth.css";
+import AuthNav from "./AuthNav";
+import LandingBackground from "../../Assets/Landing-background.png";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import MenuItem from "@mui/material/MenuItem";
+import InputAdornment from "@mui/material/InputAdornment";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Link } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 
 const Signup = ({ setAuth }) => {
   const [inputs, setInputs] = useState({
@@ -11,14 +22,27 @@ const Signup = ({ setAuth }) => {
     sex: "",
     height: "",
   });
-
   const { name, email, password, dob, sex, height } = inputs;
+  const sexs = [
+    {
+      value: "U",
+      label: "Other",
+    },
+    {
+      value: "M",
+      label: "Male",
+    },
+    {
+      value: "F",
+      label: "Female",
+    },
+  ];
 
-  const onChange = (e) => {
+  const handleChange = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
 
-  const onSubmitForm = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const body = { name, email, password, dob, sex, height };
@@ -31,10 +55,10 @@ const Signup = ({ setAuth }) => {
       if (parseRes.token) {
         localStorage.setItem("token", parseRes.token);
         setAuth(true);
-        toast.success("Signed up successfully! ")
+        toast.success("Signed up successfully! ");
       } else {
-        setAuth(false)
-        toast.error(parseRes)
+        setAuth(false);
+        toast.error(parseRes);
       }
     } catch (err) {
       console.error(err.message);
@@ -42,61 +66,139 @@ const Signup = ({ setAuth }) => {
   };
 
   return (
-    <>
-      <h1 className="text-center my-5">Signup</h1>
-      <form onSubmit={onSubmitForm}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          className="form-control my-3"
-          value={name}
-          onChange={(e) => onChange(e)}
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          className="form-control my-3"
-          value={email}
-          onChange={(e) => onChange(e)}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          className="form-control my-3"
-          value={password}
-          onChange={(e) => onChange(e)}
-        />
-        <input
-          type="date"
-          name="dob"
-          className="form-control my-3"
-          value={dob}
-          onChange={(e) => onChange(e)}
-        />
-        <select
-          name="sex"
-          className="form-control my-3"
-          value={sex}
-          onChange={(e) => onChange(e)}
-        >
-          <option value="U">Other</option>
-          <option value="M">Male</option>
-          <option value="F">Female</option>
-        </select>
-        <input
-          type="number"
-          name="height"
-          placeholder="Height (inches)"
-          className="form-control my-3"
-          value={height}
-          onChange={(e) => onChange(e)}
-        />
-        <button className="btn btn-success">Submit</button>
-      </form>
-      <Link to="/login">Login</Link>
+    <div className="Auth">
+      <AuthNav />
+      <div className="auth-container">
+        <div className="auth-image-container">
+          <img src={LandingBackground} alt="" />
+        </div>
+        <div className="auth-form-section">
+          <Box
+            sx={{
+              marginTop: 8,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Avatar
+              sx={{
+                m: 1,
+                bgcolor: "orange",
+                width: "3.5rem",
+                height: "3.5rem",
+              }}
+            >
+              <LockOutlinedIcon />
+            </Avatar>
+            <h2>Sign Up</h2>
+            <Box
+              component="form"
+              onSubmit={handleSubmit}
+              sx={{ mt: 1 }}
+            >
+              <Grid container spacing={1}>
+                <Grid item xs={12}>
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="name"
+                    label="Full Name"
+                    type="text"
+                    value={name}
+                    autoComplete="name"
+                    autoFocus
+                    onChange={(e) => handleChange(e)}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="email"
+                    label="Email Address"
+                    type="email"
+                    value={email}
+                    autoComplete="email"
+                    onChange={(e) => handleChange(e)}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    helperText="Must be 6-16 characters and contain UPPERCASE, lowercase, and special characters (!@#$...)"
+                    type="password"
+                    value={password}
+                    autoComplete="new-password"
+                    onChange={(e) => handleChange(e)}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="dob"
+                    label="Date of birth"
+                    InputLabelProps={{ shrink: true }}
+                    type="date"
+                    value={dob}
+                    onChange={(e) => handleChange(e)}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <TextField
+                    margin="normal"
+                    fullWidth
+                    name="sex"
+                    label="Sex"
+                    select
+                    value={sex}
+                    onChange={(e) => handleChange(e)}
+                  >
+                    {sexs.map((sex) => (
+                      <MenuItem key={sex.value} value={sex.value}>
+                        {sex.label}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <TextField
+                    margin="normal"
+                    fullWidth
+                    name="height"
+                    label="Height"
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">in.</InputAdornment>
+                      ),
+                    }}
+                    type="number"
+                    value={height}
+                    onChange={(e) => handleChange(e)}
+                  />
+                </Grid>
+              </Grid>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sign Up
+              </Button>
+            </Box>
+            <Link to="/login">Already have an account? Log In</Link>
+          </Box>
+        </div>
+      </div>
       <ToastContainer
         position="top-right"
         autoClose={2000}
@@ -109,7 +211,7 @@ const Signup = ({ setAuth }) => {
         pauseOnHover
         theme="colored"
       />
-    </>
+    </div>
   );
 };
 

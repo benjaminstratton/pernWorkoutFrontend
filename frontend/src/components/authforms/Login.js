@@ -7,7 +7,6 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -18,7 +17,7 @@ const Login = ({ setAuth }) => {
   });
   const { email, password } = inputs;
 
-  const onChange = (e) => {
+  const handleChange = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
 
@@ -49,7 +48,7 @@ const Login = ({ setAuth }) => {
     <div className="Auth">
       <AuthNav />
       <div className="auth-container">
-        <div className="auth-bannerImage-container">
+        <div className="auth-image-container">
           <img src={LandingBackground} alt="" />
         </div>
         <div className="auth-form-section">
@@ -67,8 +66,7 @@ const Login = ({ setAuth }) => {
             <h2>Log In</h2>
             <Box
               component="form"
-              onSubmit={handleSubmit}
-              noValidate
+              onSubmit={handleSubmit}             
               sx={{ mt: 1 }}
             >
               <TextField
@@ -81,7 +79,7 @@ const Login = ({ setAuth }) => {
                 value={email}
                 autoComplete="email"
                 autoFocus
-                onChange={(e) => onChange(e)}
+                onChange={(e) => handleChange(e)}
               />
               <TextField
                 margin="normal"
@@ -92,7 +90,7 @@ const Login = ({ setAuth }) => {
                 type="password"
                 value={password}
                 autoComplete="current-password"
-                onChange={(e) => onChange(e)}
+                onChange={(e) => handleChange(e)}
               />
               <Button
                 type="submit"
