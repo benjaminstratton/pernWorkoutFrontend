@@ -6,17 +6,18 @@ import { ToastContainer, toast } from 'react-toastify';
 const Dashboard = ({setAuth}) => {
 
   const [name, setName] = useState("");
-  const [allWorkouts, setAllWorkouts] = useState([]);
+  const [allWorkoutLogs, setAllWorkoutLogs] = useState([]);
 
   const getProfile = async () => {
     try {
-      const response = await fetch("http://localhost:5000/dashboard/", {
+      const response = await fetch("http://localhost:5000/dashboard", {
         method: "GET",
         headers: { token: localStorage.token }
       })
       const parseData = await response.json()
-      setAllWorkouts(parseData)
+      setAllWorkoutLogs(parseData)
       setName(parseData[0].user_name)
+      console.log(allWorkoutLogs)
     } catch (err) {
       console.error(err.message)
     }
