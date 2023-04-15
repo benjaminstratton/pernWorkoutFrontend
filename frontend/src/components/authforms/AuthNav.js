@@ -15,7 +15,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
 import { Link } from "react-router-dom";
 
-const LandingNav = () => {
+const AuthNav = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const menuOptions = [
     {
@@ -34,18 +34,15 @@ const LandingNav = () => {
 
   return (
     <nav>
-      <div className="landing-navbar-logo-container">
-        <h2 className="landing-logo">Push It!</h2>
+      <div className="auth-navbar-logo-container">
+        <Link to="/"><h2 className="auth-logo">Push It!</h2></Link>
       </div>
-      <div className="landing-navbar-links-container">
+      <div className="auth-navbar-links-container">
         <Link to="/">Home</Link>
         <Link href="">About</Link>
         <Link href="">Contact</Link>
-        <Link to="/login">
-            <button className="landing-login-button">Log In</button>
-        </Link>
       </div>
-      <div className="landing-navbar-menu-container">
+      <div className="auth-navbar-menu-container">
         <HiOutlineBars3 onClick={() => setOpenMenu(true)} />
       </div>
       <Drawer open={openMenu} onClose={() => setOpenMenu(false)} anchor="right">
@@ -72,4 +69,4 @@ const LandingNav = () => {
   );
 };
 
-export default LandingNav;
+export default AuthNav;

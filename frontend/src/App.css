@@ -5,3 +5,8 @@
   box-sizing: border-box;
   font-family: 'Reem Kufi', sans-serif;
 }
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  background-color: #f6f6f6;
+}

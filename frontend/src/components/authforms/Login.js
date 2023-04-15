@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
+import AuthNav from "./AuthNav";
+import "./Auth.css";
 
 const Login = ({ setAuth }) => {
   const [inputs, setInputs] = useState({
@@ -38,7 +40,8 @@ const Login = ({ setAuth }) => {
   };
 
   return (
-    <>
+    <div className="Auth">
+      <AuthNav />
       <h1 className="text-center my-5">Login</h1>
       <form onSubmit={onSubmitForm}>
         <input
@@ -72,7 +75,7 @@ const Login = ({ setAuth }) => {
         pauseOnHover
         theme="colored"
       />
-    </>
+    </div>
   );
 };
 
