@@ -3,6 +3,10 @@ body {
     overflow-x: hidden;
     background-color: #f6f6f6;
 }
+img {
+    max-width: 100%;
+    height: auto;
+}
 .Landing {
     min-height: 100vh;
     width: 85vw;
@@ -15,6 +19,10 @@ nav {
     justify-content: space-between;
     min-height: 90px;
 }
+.landing-logo {
+    color: #fe9e0d;
+    border: black;
+}
 .landing-navbar-menu-container {
     display: none;
 }
@@ -25,7 +33,7 @@ nav {
     font-size: 1.1rem;
     font-weight: 600;
 }
-.landing-signin-button {
+.landing-login-button {
     padding: 0.9rem 1.75rem;
     background-color: white;
     outline: none;
@@ -36,27 +44,116 @@ nav {
     font-weight: 600;
     transition: 0.2;
 }
-.landing-signin-button:hover {
+.landing-login-button:hover {
     background-color: rgb(234, 234, 234);
 }
 .landing-navbar-menu-container svg {
     font-size: 1.5rem;
     cursor: pointer;
 }
+.landing-banner-container {
+    position: relative;
+    display: flex;
+    padding-top: 3rem;
+}
+.landing-bannerImage-container {
+    position: absolute;
+    top: -100px;
+    right: -170px;
+    z-index: -2;
+    max-width: 700px;
+}
+.landing-text-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.landing-heading {
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: #4c4c4c;
+    max-width: 600px;
+}
+.landing-text {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    max-width: 500px;
+    color: #6a6a6a;
+    margin: 1.5rem 0rem;
+}
+.landing-signup-button {
+    padding: 1rem 2.5rem;
+    background-color: #fe9e0d;
+    outline: none;
+    border: none;
+    border-radius: 5rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: white;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.landing-signup-button svg {
+    margin-left: 0.75rem;
+    font-size: 1.5rem;
+}
+.landing-signup-button:hover {
+    background-color: #e48f0f;
+}
+
 @media (max-width: 1000px) {
     .landing-navbar-links-container a {
         margin-right: 1rem;
         font-size: 1rem;
     }
-    .landing-signin-button {
+    .landing-login-button {
         font-size: 1rem;
+    }
+    .landing-bannerImage-container {
+        max-width: 600px;
     }
 }
 @media (max-width: 800px) {
+    .Landing {
+        max-width: 95vw;
+    }
     .landing-navbar-links-container {
         display: none;
     }
     .landing-navbar-menu-container {
         display: flex;
+    }
+    .landing-bannerImage-container {
+        max-width: 450px;
+    }
+    .landing-banner-container {
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+    }
+    .landing-heading {
+        text-align: center;
+        max-width: 90%;
+    }
+    .landing-text {
+        text-align: center;
+        max-width: 80%;
+    }
+    .landing-text-section {
+        justify-content: center;
+        align-items: center;
+        margin-top: 4rem;
+    }
+    .landing-signup-button {
+        font-size: 1rem;
+        padding: 0.8rem 2rem;
+    }
+}
+@media (max-width: 600px) {
+    .landing-bannerImage-container {
+        display: none;
     }
 }

@@ -41,7 +41,7 @@ const App = () => {
   return (
     <>
       <Router>
-        <div className="container">
+        <div className="App">
           <Routes>
           <Route
               exact
