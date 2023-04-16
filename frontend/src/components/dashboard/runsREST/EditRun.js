@@ -18,44 +18,13 @@ const EditRun = (props) => {
     props.handleUpdate(run)
   }
 
-  // const [open, setOpen] = useState(false);
-  // const handleOpen = () => setOpen(true);
-  // const handleClose = () => setOpen(false);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <>
-    <details>
-        <summary>Edit Run</summary>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="date">Date: </label>
-          <input
-            type="date"
-            name="date"
-            value={run.date.slice(0, -14)}
-            onChange={handleChange}
-          />
-          <br />
-          <br />
-          <label htmlFor="distance">Distance: </label>
-          <input
-            type="number"
-            name="distance"
-            value={run.distance}
-            onChange={handleChange}
-          />
-          <br />
-          <br />
-          <label htmlFor="time">Time: </label>
-          <input
-            type="number"
-            name="time"
-            value={run.time}
-            onChange={handleChange}
-          />
-          <input type="submit" />
-        </form>
-      </details>
-      {/* <button onClick={handleOpen}>Edit</button>
+      <button className="edit-run-button" onClick={handleOpen}>Edit</button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -85,7 +54,7 @@ const EditRun = (props) => {
                   label="Date"
                   InputLabelProps={{ shrink: true }}
                   type="date"
-                  value={run.date.slice(0, -14)}
+                  value={run.date.length > 11 ? run.date.slice(0, -14) : run.date}
                   autoFocus
                   onChange={handleChange}
                 />
@@ -146,7 +115,7 @@ const EditRun = (props) => {
             </Grid>
           </Box>
         </Box>
-      </Modal> */}
+      </Modal>
     </>
   );
 };
