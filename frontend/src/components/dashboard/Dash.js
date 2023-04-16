@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import "./Dash.css";
+import DashBackground from "../../Assets/Dashboard-background.png";
 
 // Components
 import ShowRuns from "./runsREST/ShowRuns";
@@ -62,9 +63,12 @@ const Dashboard = ({setAuth}) => {
   return (
     <div className="Dash">
       <DashNav name={name} logout={logout}/>
+      <div className="dash-section-container">
+        <div className="dash-background-image-container">
+          <img src={DashBackground} alt="" />
+        </div>
+      </div>
       <h1>Dashboard</h1>
-      <h2>{name}</h2>
-      <button className="btn btn-primary" onClick={e => logout(e)}>Logout</button>
       <AddRun handleCreate={handleCreate} />
       <ShowRuns allRuns={allRuns} />
       <ToastContainer

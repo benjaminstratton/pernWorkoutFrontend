@@ -50,6 +50,18 @@ nav {
     font-size: 1.5rem;
     cursor: pointer;
 }
+.dash-section-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.dash-background-image-container {
+    position: absolute;
+    left: -150px;
+    top: 100px;
+    z-index: -2;
+}
 
 @media (max-width: 1000px) {
     .dash-navbar-links-container h4 {
