@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 
 // Components
+import ShowRuns from "./runsREST/ShowRuns";
 
 const Dashboard = ({setAuth}) => {
 
   const [name, setName] = useState("");
-  const [allWorkoutLogs, setAllWorkoutLogs] = useState([]);
+  const [allRuns, setAllRuns] = useState([]);
+  const [runsChange, setRunsChange] = useState(false)
 
   const getProfile = async () => {
     try {
@@ -15,9 +17,8 @@ const Dashboard = ({setAuth}) => {
         headers: { token: localStorage.token }
       })
       const parseData = await response.json()
-      setAllWorkoutLogs(parseData)
+      setAllRuns(parseData)
       setName(parseData[0].user_name)
-      console.log(allWorkoutLogs)
     } catch (err) {
       console.error(err.message)
     }
@@ -36,13 +37,15 @@ const Dashboard = ({setAuth}) => {
 
   useEffect(() => {
     getProfile();
-  }, [])
+    setRunsChange(false);
+  }, [runsChange])
 
   return (
     <>
       <h1>Dashboard</h1>
       <h2>{name}</h2>
       <button className="btn btn-primary" onClick={e => logout(e)}>Logout</button>
+      <ShowRuns allRuns={allRuns} setRunsChange={setRunsChange} />
       <ToastContainer
         position="top-right"
         autoClose={2000}
