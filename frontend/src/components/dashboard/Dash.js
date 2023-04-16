@@ -68,7 +68,7 @@ const Dashboard = ({setAuth}) => {
           <img src={DashBackground} alt="" />
         </div>
       </div>
-      <h1>Dashboard</h1>
+      <h1>{name}'s Dashboard</h1>
       <AddRun handleCreate={handleCreate} />
       <ShowRuns allRuns={allRuns} />
       <ToastContainer

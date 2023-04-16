@@ -1,7 +1,25 @@
 import React, { useState, useEffect } from "react";
+import { styled } from '@mui/material/styles';
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 // Components
 import EditRun from "./EditRun";
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
 
 const ShowRuns = ({ allRuns, setRunsChange }) => {
   const [runs, setRuns] = useState([]);
@@ -41,33 +59,37 @@ const ShowRuns = ({ allRuns, setRunsChange }) => {
 
   return (
     <>
-      <table>
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Distance</th>
-                <th>Time</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
+      <TableContainer component={Paper} sx={{maxWidth: '1000px'}}>
+        <Table sx={{ minWidth: '350px' }} aria-label="run workout table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>Date</StyledTableCell>
+              <StyledTableCell>Distance&nbsp;(mi)</StyledTableCell>
+              <StyledTableCell>Time&nbsp;(min)</StyledTableCell>
+              <StyledTableCell>Edit</StyledTableCell>
+              <StyledTableCell>Delete</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
             {runs.length !== 0 && runs[0].run_id !== null &&
             runs.map((run) => (
-                <tr key={run.run_id}>
-                    <td>{run.date.slice(0, -14)}</td>
-                    <td>{run.distance} miles</td>
-                    <td>{run.time} minutes</td>
-                    <td>
-                        <EditRun handleUpdate={handleUpdate} run={run} />
-                    </td>
-                    <td>
-                        <button onClick={() => handleDelete(run.run_id)}>Delete</button>
-                    </td>
-                </tr>
+              <TableRow key={run.run_id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                <TableCell component="th" scope="row">
+                  {run.date.slice(0, -14)}
+                </TableCell>
+                <TableCell>{run.distance} miles</TableCell>
+                <TableCell>{run.time} minutes</TableCell>
+                <TableCell>
+                <EditRun handleUpdate={handleUpdate} run={run} />
+                </TableCell>
+                <TableCell>
+                <button onClick={() => handleDelete(run.run_id)}>Delete</button>
+                </TableCell>
+              </TableRow>
             ))}
-        </tbody>
-      </table>
+          </TableBody>
+        </Table>
+      </TableContainer>
     </>
   );
 };
