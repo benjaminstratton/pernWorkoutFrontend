@@ -1,0 +1,73 @@
+.Dash {
+    min-height: 100vh;
+    width: 85vw;
+    max-width: 1900px;
+    margin: 0rem auto;
+}
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 90px;
+}
+.dash-logo {
+    color: #fe9e0d;
+}
+.dash-navbar-menu-container {
+    display: none;
+}
+.dash-navbar-menu-items a, .dash-navbar-menu-items p {
+    text-decoration: none;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.dash-navbar-links-container h4 {
+    display: inline-block;
+    margin-right: 3rem;
+    color: black;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+.dash-navbar-links-container span {
+    color: #fe9e0d;
+    font-size: 1.2rem;
+}
+.dash-logout-button {
+    padding: 0.9rem 1.75rem;
+    background-color: rgb(200, 200, 200);
+    outline: none;
+    border: none;
+    border-radius: 5rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2;
+}
+.dash-logout-button:hover {
+    background-color: #fe9e0d;
+}
+.dash-navbar-menu-container svg {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+    .dash-navbar-links-container h4 {
+        margin-right: 1rem;
+        font-size: 1rem;
+    }
+    .dash-logout-button {
+        font-size: 1rem;
+    }
+}
+@media (max-width: 800px) {
+    .Landing {
+        max-width: 95vw;
+    }
+    .dash-navbar-links-container {
+        display: none;
+    }
+    .dash-navbar-menu-container {
+        display: flex;
+    }
+}

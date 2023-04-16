@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
+import "./Dash.css";
 
 // Components
 import ShowRuns from "./runsREST/ShowRuns";
 import AddRun from "./runsREST/AddRun";
+import DashNav from "./DashNav";
 
 const Dashboard = ({setAuth}) => {
 
@@ -58,7 +60,8 @@ const Dashboard = ({setAuth}) => {
   }, [allRuns])
 
   return (
-    <>
+    <div className="Dash">
+      <DashNav name={name} logout={logout}/>
       <h1>Dashboard</h1>
       <h2>{name}</h2>
       <button className="btn btn-primary" onClick={e => logout(e)}>Logout</button>
@@ -76,7 +79,7 @@ const Dashboard = ({setAuth}) => {
         pauseOnHover
         theme="colored"
       />
-    </>
+    </div>
   );
 };
 
