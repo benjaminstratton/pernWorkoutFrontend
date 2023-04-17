@@ -26,7 +26,7 @@ const ShowRuns = ({ allRuns, setRunsChange }) => {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`https://push-it-app-backend.herokuapp.com/dashboard/runs/${id}`, {
+      await fetch(`https://workout-api.herokuapp.com/dashboard/runs/${id}`, {
         method: "DELETE",
         headers: { token: localStorage.token },
       });
@@ -41,7 +41,7 @@ const ShowRuns = ({ allRuns, setRunsChange }) => {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
       myHeaders.append("token", localStorage.token);
-      const response = await fetch(`https://push-it-app-backend.herokuapp.com/dashboard/runs/${editRun.run_id}`, {
+      const response = await fetch(`https://workout-api.herokuapp.com/dashboard/runs/${editRun.run_id}`, {
         method: "PUT",
         headers: myHeaders,
         body: JSON.stringify(editRun),

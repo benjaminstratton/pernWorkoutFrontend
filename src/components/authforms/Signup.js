@@ -46,7 +46,7 @@ const Signup = ({ setAuth }) => {
     e.preventDefault();
     try {
       const body = { name, email, password, dob, sex, height };
-      const response = await fetch("https://push-it-app-backend.herokuapp.com/auth/signup", {
+      const response = await fetch("https://workout-api.herokuapp.com/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
