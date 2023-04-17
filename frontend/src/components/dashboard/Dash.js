@@ -14,7 +14,7 @@ const Dashboard = ({ setAuth }) => {
 
   const getProfile = async () => {
     try {
-      const response = await fetch("http://localhost:5000/dashboard", {
+      const response = await fetch("https://push-it-app-backend.herokuapp.com/dashboard", {
         method: "GET",
         headers: { token: localStorage.token },
       });
@@ -31,7 +31,7 @@ const Dashboard = ({ setAuth }) => {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
       myHeaders.append("token", localStorage.token);
-      const response = await fetch("http://localhost:5000/dashboard/runs", {
+      const response = await fetch("https://push-it-app-backend.herokuapp.com/dashboard/runs", {
         method: "POST",
         headers: myHeaders,
         body: JSON.stringify(addRun),
