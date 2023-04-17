@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 import "./Dash.css";
 import DashBackground from "../../Assets/Dashboard-background.png";
 
@@ -8,8 +8,7 @@ import ShowRuns from "./runsREST/ShowRuns";
 import AddRun from "./runsREST/AddRun";
 import DashNav from "./DashNav";
 
-const Dashboard = ({setAuth}) => {
-
+const Dashboard = ({ setAuth }) => {
   const [name, setName] = useState("");
   const [allRuns, setAllRuns] = useState([]);
 
@@ -17,60 +16,60 @@ const Dashboard = ({setAuth}) => {
     try {
       const response = await fetch("http://localhost:5000/dashboard", {
         method: "GET",
-        headers: { token: localStorage.token }
-      })
-      const parseData = await response.json()
-      setAllRuns(parseData)
-      setName(parseData[0].user_name)
+        headers: { token: localStorage.token },
+      });
+      const parseData = await response.json();
+      setAllRuns(parseData);
+      setName(parseData[0].user_name);
     } catch (err) {
-      console.error(err.message)
+      console.error(err.message);
     }
-  }
+  };
 
   const handleCreate = async (addRun) => {
     try {
       const myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json")
-      myHeaders.append("token", localStorage.token)
+      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append("token", localStorage.token);
       const response = await fetch("http://localhost:5000/dashboard/runs", {
         method: "POST",
         headers: myHeaders,
-        body: JSON.stringify(addRun)
-      })
+        body: JSON.stringify(addRun),
+      });
       const parseResponse = await response.json();
-      console.log(parseResponse)
-      getProfile()
+      console.log(parseResponse);
+      getProfile();
     } catch (err) {
-      console.error(err.message)
+      console.error(err.message);
     }
-  }
+  };
 
   const logout = (e) => {
-      e.preventDefault()
-      try {
-        localStorage.removeItem("token")
-        setAuth(false)
-        toast.success("Logged out successfully!")
-      } catch (err) {
-        console.log(err.message)
-      }
-  }
+    e.preventDefault();
+    try {
+      localStorage.removeItem("token");
+      setAuth(false);
+      toast.success("Logged out successfully!");
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
 
   useEffect(() => {
     getProfile();
-  }, [allRuns])
+  }, [allRuns]);
 
   return (
     <div className="Dash">
-      <DashNav name={name} logout={logout}/>
+      <DashNav name={name} logout={logout} />
       <div className="dash-section-container">
         <div className="dash-background-image-container">
           <img src={DashBackground} alt="" />
         </div>
+        <h1>{name}'s Dashboard</h1>
+        <AddRun handleCreate={handleCreate} />
+        <ShowRuns allRuns={allRuns} />
       </div>
-      <h1>{name}'s Dashboard</h1>
-      <AddRun handleCreate={handleCreate} />
-      <ShowRuns allRuns={allRuns} />
       <ToastContainer
         position="top-right"
         autoClose={2000}

@@ -59,15 +59,15 @@ const ShowRuns = ({ allRuns, setRunsChange }) => {
 
   return (
     <>
-      <TableContainer component={Paper} sx={{maxWidth: '1000px'}}>
+      <TableContainer component={Paper} sx={{maxWidth: '1000px'}} className="run-table">
         <Table sx={{ minWidth: '350px' }} aria-label="run workout table">
           <TableHead>
             <TableRow>
-              <StyledTableCell>Date</StyledTableCell>
-              <StyledTableCell>Distance&nbsp;(mi)</StyledTableCell>
-              <StyledTableCell>Time&nbsp;(min)</StyledTableCell>
-              <StyledTableCell>Edit</StyledTableCell>
-              <StyledTableCell>Delete</StyledTableCell>
+              <StyledTableCell align="left">Date</StyledTableCell>
+              <StyledTableCell align="left">Distance&nbsp;(mi)</StyledTableCell>
+              <StyledTableCell align="left">Time&nbsp;(min)</StyledTableCell>
+              <StyledTableCell align="center">Edit</StyledTableCell>
+              <StyledTableCell align="center">Delete</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -79,15 +79,16 @@ const ShowRuns = ({ allRuns, setRunsChange }) => {
                 </TableCell>
                 <TableCell>{run.distance} miles</TableCell>
                 <TableCell>{run.time} minutes</TableCell>
-                <TableCell>
+                <TableCell align="center">
                 <EditRun handleUpdate={handleUpdate} run={run} />
                 </TableCell>
-                <TableCell>
-                <button onClick={() => handleDelete(run.run_id)}>Delete</button>
+                <TableCell align="center">
+                <button className="delete-run-button" onClick={() => handleDelete(run.run_id)}>Delete</button>
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
+          {/* Would like to add pagination */}
         </Table>
       </TableContainer>
     </>

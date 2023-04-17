@@ -42,6 +42,7 @@ const EditRun = (props) => {
             boxShadow: 24,
             p: 4,
           }}
+          className="edit-form"
         >
           <h2>Edit Run Workout</h2>
           <Box component="form" onSubmit={handleSubmit}>

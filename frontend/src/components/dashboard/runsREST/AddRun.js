@@ -43,6 +43,7 @@ const AddRun = (props) => {
             boxShadow: 24,
             p: 4,
           }}
+          className="add-form"
         >
           <h2>Add Run Workout</h2>
           <Box component="form" onSubmit={handleSubmit}>
