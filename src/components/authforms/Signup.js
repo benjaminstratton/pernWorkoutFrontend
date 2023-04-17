@@ -36,6 +36,10 @@ const Signup = ({ setAuth }) => {
       value: "F",
       label: "Female",
     },
+    {
+      value: "N",
+      label: "Non-binary"
+    }
   ];
 
   const handleChange = (e) => {
