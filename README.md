@@ -1,3 +1,3 @@
-# Workout App - Frontend
+# Push-It App (Client)
 
-A workout app created with the PERN Stack (Postgres, Express, React, and Node).
+Welcome to the home of [Push-It]()'s Client! This frontend app consists of a Javascript library known as [React](https://react.dev/) which performs API requests to Push-it's [backend](https://github.com/benjaminstratton/pernWorkoutBackend) database.
