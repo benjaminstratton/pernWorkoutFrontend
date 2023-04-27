@@ -1,5 +1,6 @@
 .Auth {
     min-height: 100vh;
+    height: 100%;
     width: 85vw;
     max-width: 1900px;
     margin: 0rem auto;
@@ -54,6 +55,7 @@ nav {
 }
 .auth-form-section {
     max-width: 600px;
+    margin-bottom: 50px;
 }
 .auth-form-section a {
     color: rgb(80, 80, 255);
